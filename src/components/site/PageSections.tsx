@@ -81,7 +81,11 @@ export function Hero({ c }: { c: PageContent["hero"] }) {
 }
 
 export function SocialProof({ label }: { label: string }) {
-  const logos = ["KLE", "DAR", "OKO"];
+  const logos: { name: string; href: string }[] = [
+    { name: "KLE", href: "https://www.restaurantkle.com/de" },
+    { name: "DAR", href: "https://de.restaurantdar.com/" },
+    { name: "OKO", href: "https://oko.bar/" },
+  ];
   return (
     <section className="border-y border-border/60 bg-background">
       <div className="mx-auto max-w-6xl px-6 py-12">
@@ -89,12 +93,17 @@ export function SocialProof({ label }: { label: string }) {
           {label}
         </p>
         <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-16 gap-y-6 sm:gap-x-24">
-          {logos.map((n) => (
-            <li
-              key={n}
-              className="text-3xl font-bold tracking-[0.3em] text-foreground/30 transition hover:text-foreground sm:text-4xl"
-            >
-              {n}
+          {logos.map((l) => (
+            <li key={l.name}>
+              <a
+                href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={l.name}
+                className="text-3xl font-bold tracking-[0.3em] text-foreground/30 transition hover:text-foreground sm:text-4xl"
+              >
+                {l.name}
+              </a>
             </li>
           ))}
         </ul>
