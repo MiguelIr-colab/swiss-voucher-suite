@@ -238,6 +238,8 @@ export function ContactForm({ c }: { c: PageContent["contact"] }) {
   const [submitted, setSubmitted] = useState(false);
   const [pending, setPending] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
