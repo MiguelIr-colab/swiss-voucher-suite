@@ -1,6 +1,9 @@
-import { useState, type FormEvent } from "react";
-import { ArrowRight, Check, Code2, CreditCard, Palette, CheckCircle2 } from "lucide-react";
+import { useEffect, useState, type FormEvent } from "react";
+import { ArrowRight, Check, Code2, CreditCard, Palette, CheckCircle2, ExternalLink } from "lucide-react";
 import voucherImg from "@/assets/voucher-hero.png";
+import kleShot from "@/assets/restaurants/kle.png";
+import darShot from "@/assets/restaurants/dar.png";
+import okoShot from "@/assets/restaurants/oko.png";
 
 export interface PageContent {
   hero: {
