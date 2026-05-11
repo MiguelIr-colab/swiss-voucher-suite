@@ -1,6 +1,9 @@
-import { useState, type FormEvent } from "react";
-import { ArrowRight, Check, Code2, CreditCard, Palette, CheckCircle2 } from "lucide-react";
+import { useEffect, useState, type FormEvent } from "react";
+import { ArrowRight, Check, Code2, CreditCard, Palette, CheckCircle2, ExternalLink } from "lucide-react";
 import voucherImg from "@/assets/voucher-hero.png";
+import kleShot from "@/assets/restaurants/kle.png";
+import darShot from "@/assets/restaurants/dar.png";
+import okoShot from "@/assets/restaurants/oko.png";
 
 export interface PageContent {
   hero: {
@@ -81,32 +84,49 @@ export function Hero({ c }: { c: PageContent["hero"] }) {
 }
 
 export function SocialProof({ label }: { label: string }) {
-  const logos: { name: string; href: string }[] = [
-    { name: "KLE", href: "https://www.restaurantkle.com/de" },
-    { name: "DAR", href: "https://de.restaurantdar.com/" },
-    { name: "OKO", href: "https://oko.bar/" },
+  const cards = [
+    { name: "KLE", city: "Zürich", href: "https://www.restaurantkle.com/de", img: kleShot },
+    { name: "DAR", city: "Zürich", href: "https://de.restaurantdar.com/", img: darShot },
+    { name: "OKO", city: "Zürich", href: "https://oko.bar/", img: okoShot },
   ];
   return (
     <section className="border-y border-border/60 bg-background">
-      <div className="mx-auto max-w-6xl px-6 py-12">
+      <div className="mx-auto max-w-6xl px-6 py-16">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
           {label}
         </p>
-        <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-16 gap-y-6 sm:gap-x-24">
-          {logos.map((l) => (
-            <li key={l.name}>
-              <a
-                href={l.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={l.name}
-                className="text-3xl font-bold tracking-[0.3em] text-foreground/30 transition hover:text-foreground sm:text-4xl"
-              >
-                {l.name}
-              </a>
-            </li>
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {cards.map((r) => (
+            <article
+              key={r.name}
+              className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-secondary/30 transition-all duration-300 hover:-translate-y-1 hover:bg-background hover:shadow-[0_25px_60px_-25px_rgba(0,0,0,0.2)]"
+            >
+              <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-background">
+                <img
+                  src={r.img}
+                  alt={`${r.name} website preview`}
+                  loading="lazy"
+                  className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                />
+              </div>
+              <div className="flex items-center justify-between gap-4 p-6">
+                <div>
+                  <h3 className="text-lg font-bold tracking-[0.2em] text-foreground">{r.name}</h3>
+                  <p className="mt-0.5 text-xs text-muted-foreground">{r.city}</p>
+                </div>
+                <a
+                  href={r.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-4 py-2 text-xs font-semibold text-foreground transition hover:border-accent hover:text-accent"
+                >
+                  Visit
+                  <ExternalLink size={12} strokeWidth={2.5} />
+                </a>
+              </div>
+            </article>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );
@@ -218,6 +238,8 @@ export function ContactForm({ c }: { c: PageContent["contact"] }) {
   const [submitted, setSubmitted] = useState(false);
   const [pending, setPending] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -296,7 +318,7 @@ export function ContactForm({ c }: { c: PageContent["contact"] }) {
                   <Field name="website" type="url" placeholder="https://" label={c.fields.website} error={errors.website} />
                   <Field name="email" type="email" label={c.fields.email} error={errors.email} />
                   <div>
-                    <div className="g-recaptcha" data-sitekey={RECAPTCHA_SITE_KEY} />
+                    {mounted && <div className="g-recaptcha" data-sitekey={RECAPTCHA_SITE_KEY} />}
                     {errors.recaptcha && (
                       <p className="mt-1.5 text-xs text-destructive">{errors.recaptcha}</p>
                     )}
