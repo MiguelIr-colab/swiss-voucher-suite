@@ -33,7 +33,7 @@ export const contentIT: PageContent = {
     ],
     cta: "Inizia ora",
   },
-  trust: { title: "Integrazione nativa con", items: ["TWINT", "Stripe", "Wimag"] },
+  trust: { title: "Integrazione nativa con", items: ["TWINT", "Stripe", "Wimag", "Worldline"] },
   contact: {
     eyebrow: "Contatti",
     title: "Parla con il nostro team.",

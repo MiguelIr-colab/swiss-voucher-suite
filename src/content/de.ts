@@ -35,7 +35,7 @@ export const contentDE: PageContent = {
   },
   trust: {
     title: "Native Integration mit",
-    items: ["TWINT", "Stripe", "Wimag"],
+    items: ["TWINT", "Stripe", "Wimag", "Worldline"],
   },
   contact: {
     eyebrow: "Kontakt",
