@@ -23,8 +23,8 @@ export const contentDE: PageContent = {
   },
   pricing: {
     eyebrow: "Preise",
-    title: "2% Kommission. 0 CHF fix. 0 CHF Setup.",
-    subtitle: "pro Transaktion",
+    title: "2% + Plattformgebühr. 0 CHF fix. 0 CHF Setup.",
+    subtitle: "pro Transaktion + Plattformgebühr",
     bullets: [
       "Keine monatlichen Gebühren, keine versteckten Kosten",
       "Wir verdienen nur, wenn du verkaufst",
@@ -53,5 +53,5 @@ export const ctaDE = "Demo anfragen";
 export const footerDE = { tagline: "Das Voucher-System für Schweizer Gourmet-Restaurants.", rights: "Alle Rechte vorbehalten." };
 export const metaDE = {
   title: "Voltaire — Voucher-System für Schweizer Gourmet-Restaurants",
-  description: "Verkaufe Vouchers direkt auf deiner Website. 2% Kommission. TWINT, Stripe & Wimag. Keine Zwischenhändler.",
+  description: "Verkaufe Vouchers direkt auf deiner Website. 2% + Plattformgebühr. TWINT, Stripe & Wimag. Keine Zwischenhändler.",
 };
